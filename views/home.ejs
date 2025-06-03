@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homepage</title>
+        <style>
+            .blog-card {
+                margin-bottom: 2rem;
+                transition: transform 0.2s ease-in-out;
+            }
+
+            .blog-card:hover {
+                transform: scale(1.03);
+            }
+
+            .blog-img {
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .blog-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+        <div class="container mt-4">
+            <h2 class="mb-4">Recent Blogs</h2>
+            <div class="blog-grid">
+                <% blogs.forEach(blog=> { %>
+                <div class="card blog-card shadow-sm">
+                    <img src="<%= blog.coverImageURL %>" class="card-img-top blog-img">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= blog.title %>
+                        </h5>
+                        <a href="/blog/<%= blog._id %>" class="btn btn-outline-secondary btn-sm">View</a>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            
+        </div>
+        <%- include('./partials/script') %>
+</body>
+
+</html>
